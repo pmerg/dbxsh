@@ -14,10 +14,10 @@ You can list, move, create directories and delete files and directories. Future 
 
 Example
 ------------
-`dbxsh.py ls '/Camera Uploads'
-dbxsh.py mkdir /dbxsh_test
-dbxsh.py rm /dbxsh_test
-`
+.. code-block:: bash
+   dbxsh.py ls '/Camera Uploads'
+   dbxsh.py mkdir /dbxsh_test
+   dbxsh.py rm /dbxsh_test
 
 License
 =========
