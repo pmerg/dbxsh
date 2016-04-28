@@ -1,9 +1,10 @@
 from setuptools import setup
 import os
 import sys
+import subprocess
 
 try:
-    version = subprocess.check_output(["git", "describe"]).rstrip()
+    version = subprocess.check_output(["git", "describe", "--tags"]).rstrip()
 except:
     version = '0.0.dev'
 
