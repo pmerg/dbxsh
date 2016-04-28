@@ -5,7 +5,7 @@ import sys
 try:
     version = subprocess.check_output(["git", "describe"]).rstrip()
 except:
-    version = 'unknown-version'
+    version = '0.0.dev'
 
 setup(
     name='dbxsh',
