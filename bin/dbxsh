@@ -8,18 +8,8 @@ Usage:
   dbxcli cp <from_path> <to_path>
   dbxcli mv <from_path> <to_path>
   dbxcli meta <path>
-  dbxcli [options] clear
-  dbxcli [options] new <slug> [<ext>]
-  dbxcli [options] render [--posts] [--static] [--rss] [--sitemap]
-  dbxcli [options] update
-  dbxcli [options] mentions [--twitter]
-  dbxcli [options] getenv <variable>
   dbxcli -h, --help
   dbxcli --version
-
-Options:
-  -p, --path=<path>        top directory of your blog. [default: .]
-  -v, --verbose=<level>,   show messages, level=0..2, 0=silent. [default: 1]
 """
 
 from docopt import docopt
@@ -29,10 +19,9 @@ import os
 import dropbox
 from dropbox.files import WriteMode
 from dropbox.exceptions import ApiError, AuthError
+from dbxsh import version
 
-__version__ = 0.1
-
-class dbxSh():
+class _dbxsh():
 	def __init__(self, token):
 		self.dbx = dropbox.Dropbox(token)
 
@@ -99,7 +88,7 @@ class dbxSh():
 			cursor = file_list.cursor
 
 if __name__ == '__main__':
-	args = docopt(__doc__, version=__version__)
+	args = docopt(__doc__, version=version.__version__)
 	DBX_TOKEN = os.environ.get('DBXSH_TOKEN')
 	if not DBX_TOKEN:
 		print """$DBXSH_TOKEN is not set.
@@ -108,7 +97,7 @@ if __name__ == '__main__':
 """
 		sys.exit(1)
 
-	dbx_shell = dbxSh(DBX_TOKEN)
+	dbx_shell = _dbxsh(DBX_TOKEN)
 
 	if args['ls']:
 		recursive = args['-R']
